@@ -3,6 +3,7 @@
 
 # Build files
 build/*
+imgui.ini
 
 # Subprojects
 subprojects/*

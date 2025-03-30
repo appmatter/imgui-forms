@@ -1,6 +1,6 @@
 # ImGui Forms
 
-Forms for ImGui
+Forms for ImGui built on top of cpp-forms
 
 ## Features
 

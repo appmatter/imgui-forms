@@ -1,0 +1,16 @@
+#pragma once
+
+#include <imgui.h>
+#include <string>
+#include <imgui_forms/field_traits.hpp>
+#include <imgui_forms/field_traits_macros.hpp>
+
+struct ExampleMacroModel
+{
+    std::string name;
+    std::string email;
+};
+
+DEFINE_FORM(ExampleMacroModel,
+            name, "text",
+            email, "email")
