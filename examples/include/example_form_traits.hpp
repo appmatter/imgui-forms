@@ -2,8 +2,8 @@
 
 #include <imgui.h>
 #include <string>
-#include <imgui_forms/field_traits.hpp>
-#include <imgui_forms/field_traits_macros.hpp>
+#include <imgui-forms/field_traits.hpp>
+#include <imgui-forms/field_traits_macros.hpp>
 #include <iostream>
 struct ExampleTraitsModel
 {

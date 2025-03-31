@@ -9,10 +9,10 @@
 #include <iostream>
 #include <GL/gl.h>
 
-#include <imgui_forms/bindings.hpp>
-#include <imgui_forms/field_traits.hpp>
-#include <imgui_forms/field_traits_macros.hpp>
-#include <cpp_forms/form.hpp>
+#include <imgui-forms/bindings.hpp>
+#include <imgui-forms/field_traits.hpp>
+#include <imgui-forms/field_traits_macros.hpp>
+#include <cpp-forms/form.hpp>
 
 #include "example_form_traits.hpp"
 

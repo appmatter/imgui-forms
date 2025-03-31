@@ -4,7 +4,7 @@
 #include <unordered_map>
 #include <functional>
 #include <type_traits>
-#include <cpp_forms/form.hpp>
+#include <cpp-forms/form.hpp>
 
 namespace imgui_forms
 {

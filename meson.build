@@ -2,7 +2,7 @@ project('imgui-forms', 'cpp')
 
 
 imgui_dep = dependency('imgui', fallback: ['imgui', 'imgui_dep'])
-cpp_forms_dep = dependency('cpp-forms', fallback: ['cpp-forms', 'cpp_forms_dep'])
+cpp_forms_dep = dependency('cpp-forms', fallback: ['cpp-forms','cpp_forms_dep'])
 
 imgui_forms_dirs = include_directories('include')
 imgui_forms_dep = declare_dependency(
