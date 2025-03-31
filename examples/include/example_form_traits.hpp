@@ -21,9 +21,12 @@ struct imgui_forms::FormFieldTraits<ExampleTraitsModel>
             std::cout << "get name: " << u.name << std::endl;
             return u.name;
         }
-        // FORM_FIELD_GET(u, name, field);
-        FORM_FIELD_GET(u, email, field);
-        throw std::runtime_error("Unknown field");
+        if (field == "email")
+        {
+            std::cout << "get email: " << u.email << std::endl;
+            return u.email;
+        }
+        throw std::runtime_error("Unknown field: " + field);
     }
 
     static void set(ExampleTraitsModel &u, const std::string &field, const std::string &val)
@@ -32,8 +35,14 @@ struct imgui_forms::FormFieldTraits<ExampleTraitsModel>
         {
             std::cout << "set name: " << val << std::endl;
             u.name = val;
+            return;
         }
-        FORM_FIELD_SET(u, email, field, val);
-        throw std::runtime_error("Unknown field");
+        if (field == "email")
+        {
+            std::cout << "set email: " << val << std::endl;
+            u.email = val;
+            return;
+        }
+        throw std::runtime_error("Unknown field: " + field);
     }
 };

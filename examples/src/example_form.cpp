@@ -13,7 +13,7 @@
 #include "imgui-forms/bindings.hpp"
 #include "imgui-forms/field_traits.hpp"
 #include "imgui-forms/field_traits_macros.hpp"
-
+#include "imgui-forms/input_text_utils.hpp"
 #include "example_form_traits.hpp"
 
 int main()
@@ -43,9 +43,15 @@ int main()
     ImGui_ImplOpenGL3_Init("#version 130");
 
     ExampleTraitsModel model = {"John", "john@example.com"};
+
     cpp_forms::Form<ExampleTraitsModel> form(model);
+
     imgui_forms::Bindings<ExampleTraitsModel> bindings(form);
     bindings.setBufferCapacity("name", 12);
+    bindings.setBufferCapacity("email", 12);
+
+    ImGui::GetIO().FontGlobalScale = 2.0f;
+
     while (!glfwWindowShouldClose(window))
     {
         glfwPollEvents();
@@ -56,11 +62,28 @@ int main()
         if (ImGui::Begin("Hello, world!"))
         {
             ImGui::Text("Hello, world!");
-            ImGui::InputText("Input Text", bindings["name"].data(), bindings["name"].capacity());
-            // if ()
-            // {
-            //     // bindings["name"].commit(); // Write buffer value to the form model
-            // }
+            ImGuiInputTextFlags flags = ImGuiInputTextFlags_CallbackResize;
+            // auto nameBinding = bindings["name"];
+
+            if (ImGui::InputText("Input Text",
+                                 bindings["name"].data(),
+                                 bindings["name"].capacity(),
+                                 flags,
+                                 imgui_forms::InputTextCallback,
+                                 &bindings["name"].buffer))
+            {
+                std::cout << "name in inputtext: " << bindings["name"].data() << std::endl;
+            }
+            if (ImGui::Button("Submit"))
+            {
+                bindings.commitAll();
+                form.commit(); // Write buffer value to the form model
+                std::cout << "name in submit: " << model.name << std::endl;
+            }
+            if (ImGui::Button("Clear"))
+            {
+                bindings.clear();
+            }
         }
         ImGui::End();
 
