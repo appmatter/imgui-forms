@@ -12,6 +12,15 @@ namespace imgui_forms
         if (buf.empty())
         {
             buf = getFieldValue(field);
+            auto it = bufferCapacities.find(field);
+            if (it != bufferCapacities.end())
+            {
+                buf.reserve(it->second);
+            }
+            else
+            {
+                buf.reserve(128); // default
+            }
         }
 
         return BufferRef{
@@ -60,4 +69,9 @@ namespace imgui_forms
         imgui_forms::FormFieldTraits<T>::set(form.data(), field, val);
     }
 
+    template <typename T>
+    void Bindings<T>::setBufferCapacity(const std::string &field, size_t capacity)
+    {
+        bufferCapacities[field] = capacity;
+    }
 }

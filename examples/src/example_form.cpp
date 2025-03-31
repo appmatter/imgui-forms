@@ -8,11 +8,11 @@
 #include <algorithm>
 #include <iostream>
 #include <GL/gl.h>
-
-#include <imgui-forms/bindings.hpp>
-#include <imgui-forms/field_traits.hpp>
-#include <imgui-forms/field_traits_macros.hpp>
 #include <cpp-forms/form.hpp>
+
+#include "imgui-forms/bindings.hpp"
+#include "imgui-forms/field_traits.hpp"
+#include "imgui-forms/field_traits_macros.hpp"
 
 #include "example_form_traits.hpp"
 
@@ -45,7 +45,7 @@ int main()
     ExampleTraitsModel model = {"John", "john@example.com"};
     cpp_forms::Form<ExampleTraitsModel> form(model);
     imgui_forms::Bindings<ExampleTraitsModel> bindings(form);
-
+    bindings.setBufferCapacity("name", 12);
     while (!glfwWindowShouldClose(window))
     {
         glfwPollEvents();
@@ -56,12 +56,13 @@ int main()
         if (ImGui::Begin("Hello, world!"))
         {
             ImGui::Text("Hello, world!");
-            if (ImGui::InputText("Input Text", bindings["name"].data(), bindings["name"].capacity()))
-            {
-                // bindings["name"].commit(); // Write buffer value to the form model
-            }
-            ImGui::End();
+            ImGui::InputText("Input Text", bindings["name"].data(), bindings["name"].capacity());
+            // if ()
+            // {
+            //     // bindings["name"].commit(); // Write buffer value to the form model
+            // }
         }
+        ImGui::End();
 
         // Rendering
         ImGui::Render();

@@ -30,6 +30,8 @@ namespace imgui_forms
 
         BufferRef operator[](const std::string &field);
 
+        void setBufferCapacity(const std::string &field, size_t capacity);
+
         const std::unordered_map<std::string, std::string> &errors() const
         {
             return form.allErrors();
@@ -42,7 +44,7 @@ namespace imgui_forms
         cpp_forms::Form<T> &form;
 
         std::unordered_map<std::string, std::string> &bufferMap();
-
+        std::unordered_map<std::string, int> bufferCapacities;
         std::string getFieldValue(const std::string &field);
         void setFieldValue(const std::string &field, const std::string &val);
     };
